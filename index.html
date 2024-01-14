@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>せうぴょい</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+            font-family: Monospace;
+            background-color: #000;
+            color: #fff;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #info {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+
+        #info a,
+        .button {
+            color: #f00;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <script id="vertexShader" type="x-shader/x-vertex">
+			varying vec2 vUv;
+
+			void main() {
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}
+		</script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+			varying vec2 vUv;
+
+			uniform float strength;
+			uniform sampler2D tDiffuse;
+
+			void main() {
+				float n = 50.0 / strength;
+				gl_FragColor = texture2D( tDiffuse, floor( vUv * n ) / n );
+			}
+		</script>
+
+    <script src="_js/three.js"></script>
+    <script src="_js/mmdparser.min.js"></script>
+    <script src="_js/ammo.js"></script>
+
+    <script src="_js/TGALoader.js"></script>
+    <script src="_js/MMDLoader.js"></script>
+    <script src="_js/OutlineEffect.js"></script>
+    <script src="_js/CCDIKSolver.js"></script>
+    <script src="_js/MMDPhysics.js"></script>
+    <!--script src="_js/OrbitControls.js"></script-->//
+
+    <script src="_js/EffectComposer.js"></script>
+    <script src="_js/ShaderPass.js"></script>
+    <script src="_js/CopyShader.js"></script>
+
+    <script src="_js/LuminosityHighPassShader.js"></script>
+    <script src="_js/UnrealBloomPass.js"></script>
+
+    <script src="_js/Detector.js"></script>
+    <script src="_js/dat.gui.min.js"></script>
+
+    <script src="_js/stats.js"></script>
+    
+    <script src="_js/sample.js"></script>
+
+
+
+
+</body>
+
+</html>
